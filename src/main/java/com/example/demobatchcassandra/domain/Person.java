@@ -9,16 +9,10 @@ import java.util.UUID;
 public class Person {
 
     @PrimaryKey
-    private final UUID id;
+    private UUID id;
 
-    private final String name;
-    private final int age;
-
-    public Person(UUID id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
+    private String name;
+    private int age;
 
     public UUID getId() {
         return id;
@@ -32,9 +26,24 @@ public class Person {
         return age;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
-        return String.format("{ @type = %1$s, id = %2$s, name = %3$s, age = %4$d }",
-                getClass().getName(), getId().toString(), getName(), getAge());
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

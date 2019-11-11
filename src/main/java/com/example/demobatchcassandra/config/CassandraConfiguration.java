@@ -28,7 +28,7 @@ public class CassandraConfiguration extends AbstractCassandraConfiguration {
 
     @Override
     public int getPort() {
-        return 32774;
+        return 32769;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class CassandraConfiguration extends AbstractCassandraConfiguration {
         return Arrays.asList(script);
     }
 
-    @PostConstruct
+    //@PostConstruct
     public void init() {
         CassandraOperations template = new CassandraTemplate(Objects.requireNonNull(session().getObject()));
         Person jonDoe = template.insert(newPerson("Jon Doe", 40));
@@ -63,6 +63,10 @@ public class CassandraConfiguration extends AbstractCassandraConfiguration {
     }
 
     protected static Person newPerson(UUID id, String name, int age) {
-        return new Person(id, name, age);
+        Person person = new Person();
+        person.setId(id);
+        person.setName(name);
+        person.setAge(age);
+        return person;
     }
 }
